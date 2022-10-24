@@ -1,11 +1,13 @@
 public class Bilhete {
     private Voo[] reservas;
+    private static String TIPO;
     
 
     /**
      * Método construtor
      */
-    public Bilhete(){
+    public Bilhete(String tipo){
+        this.TIPO = tipo
 
     }
 
@@ -18,6 +20,14 @@ public class Bilhete {
     }
 
     public String ImprimirBilhete(){
+        return null;
+    }
+    
+    public double CalcularValor(){
+        return null;
+    }
+    
+    public int GerarPontos(){
         return null;
     }
 }
