@@ -14,10 +14,6 @@ public class Trecho {
 
     }
 
-    public void AlterarTrecho(String novaOrigem, String novoDestino){
-
-    }
-
     public String informacoesDoTrecho(){
         return null;
     }
