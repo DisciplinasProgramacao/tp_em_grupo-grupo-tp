@@ -1,0 +1,194 @@
+<Project>
+  <Name>sem Título</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>sitema_aereo</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Trecho</Name>
+        <Access>Public</Access>
+        <Location left="1393" top="353" />
+        <Size width="214" height="155" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">int numero</Member>
+        <Member type="Field">String origem</Member>
+        <Member type="Field">String destino</Member>
+        <Member type="Method">public String InformacaoDoTrecho()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Voo</Name>
+        <Access>Public</Access>
+        <Location left="1727" top="353" />
+        <Size width="343" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">static double VALOR_BASE</Member>
+        <Member type="Field">Data data</Member>
+        <Member type="Field">Trecho trecho</Member>
+        <Member type="Method">public String InformacaoDoVoo()</Member>
+        <Member type="Method">public void AlterarTrecho(String novaOrigem, String novoDestino)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Bilhete</Name>
+        <Access>Public</Access>
+        <Location left="1569" top="621" />
+        <Size width="285" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected double PORCENTAGEM_VOO_UNICO = 0.1</Member>
+        <Member type="Field">protected double PORCENTAGEM_VARIOS_VOOS = 0.5</Member>
+        <Member type="Field">protected Voo[] reservas</Member>
+        <Member type="Method">public void AddVoo(Voo reserva)</Member>
+        <Member type="Method">public void RemoverVoo(Voo reserva)</Member>
+        <Member type="Method">public String ImprimirBilhete()</Member>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Cliente</Name>
+        <Access>Public</Access>
+        <Location left="1235" top="564" />
+        <Size width="220" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">String nome</Member>
+        <Member type="Field">String cpf</Member>
+        <Member type="Field">Bilhetes[] bilhetes</Member>
+        <Member type="Field">int totalPontos</Member>
+        <Member type="Field">int periodo</Member>
+        <Member type="Method">public void comprarBilhete()</Member>
+        <Member type="Method">public bool verificarPontos()</Member>
+        <Member type="Method">public void gerarRelatorioDados()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fidelidade</Name>
+        <Access>Public</Access>
+        <Location left="1481" top="976" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Promocional</Name>
+        <Access>Public</Access>
+        <Location left="1777" top="976" />
+        <Size width="249" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double PORCENTAGEM_PONTOS = 0.5</Member>
+        <Member type="Field">private double PORCENTAGEM_VALOR = 0.6</Member>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>pontuadorPreto</Name>
+        <Access>Public</Access>
+        <Location left="1006" top="1211" />
+        <Size width="221" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double MULTIPLICADOR = 1.5</Member>
+        <Member type="Field">double CUSTO_MENSAL = 0</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PontuadorPrata</Name>
+        <Access>Public</Access>
+        <Location left="1261" top="1211" />
+        <Size width="212" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double MULTIPLICADOR = 1.25</Member>
+        <Member type="Field">double CUSTO_MENSAL = 0</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Pontuador</Name>
+        <Access>Public</Access>
+        <Location left="1065" top="892" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>pontuadorNormal</Name>
+        <Access>Public</Access>
+        <Location left="696" top="1211" />
+        <Size width="212" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Empresa</Name>
+        <Access>Public</Access>
+        <Location left="777" top="512" />
+        <Size width="271" height="246" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Hashmap Clientes</Member>
+        <Member type="Method">public double valorArregadado(Data periodo)</Member>
+        <Member type="Method">public bool cadastroCliente()</Member>
+        <Member type="Method">public void procurarClientes(String cpf)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="9" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="3" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
