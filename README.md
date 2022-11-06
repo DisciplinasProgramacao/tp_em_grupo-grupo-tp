@@ -7,7 +7,7 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 * João Augusto Lacerda Silva
 * Gabriel de Oliveira Peron
 * Gabriel Santos Carvalho
-* Vitor
+* Vitor Augusto
 
 ## Professores responsáveis
 

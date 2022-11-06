@@ -10,7 +10,7 @@ public class Voo {
         /**Adicionar verificação de valor valido */
         this.data = data;
         this.trecho = trecho;
-        this.VALOR_BASE = valorBase
+        this.VALOR_BASE = valorBase;
     }
     
     public void AlterarTrecho(String novaOrigem, String novoDestino){

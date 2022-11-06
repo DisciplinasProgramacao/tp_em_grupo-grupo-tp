@@ -7,7 +7,7 @@ public class Bilhete {
      * Método construtor
      */
     public Bilhete(String tipo){
-        this.TIPO = tipo
+        this.TIPO = tipo;
 
     }
 
@@ -20,14 +20,14 @@ public class Bilhete {
     }
 
     public String ImprimirBilhete(){
-        return null;
+        return "0";
     }
     
     public double CalcularValor(){
-        return null;
+        return 0;
     }
     
     public int GerarPontos(){
-        return null;
+        return 0;
     }
 }
