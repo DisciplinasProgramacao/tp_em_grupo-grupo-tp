@@ -1,5 +1,5 @@
 public class Voo {
-    private static double VALOR_BASE;
+    private double valorBase;
     private Data data;
     private Trecho trecho;
 
@@ -10,7 +10,7 @@ public class Voo {
         /**Adicionar verificação de valor valido */
         this.data = data;
         this.trecho = trecho;
-        this.VALOR_BASE = valorBase;
+        this.valorBase=valorBase;
     }
     
     public void AlterarTrecho(String novaOrigem, String novoDestino){
@@ -20,4 +20,12 @@ public class Voo {
     public String informacoesDoVoo(){
         return null;
     }
+
+	public double getValorBase() {
+		return valorBase;
+	}
+
+	public void setValorBase(double valorBase) {
+		this.valorBase = valorBase;
+	}
 }
