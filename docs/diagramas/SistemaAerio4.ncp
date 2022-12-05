@@ -1,0 +1,234 @@
+<Project>
+  <Name>sem Título</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>sitema_aereo</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Trecho</Name>
+        <Access>Public</Access>
+        <Location left="1273" top="236" />
+        <Size width="214" height="155" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">int numero</Member>
+        <Member type="Field">String origem</Member>
+        <Member type="Field">String destino</Member>
+        <Member type="Method">public String InformacaoDoTrecho()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Voo</Name>
+        <Access>Public</Access>
+        <Location left="1620" top="236" />
+        <Size width="423" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">static double VALOR_BASE</Member>
+        <Member type="Field">private LocalDate data = LocalDate.now()</Member>
+        <Member type="Field">private List&lt;Bilhete&gt; reservasFeitas = new ArrayList&lt;Bilhete&gt;()</Member>
+        <Member type="Field">Trecho trecho</Member>
+        <Member type="Method">public void AlterarTrecho(int numero, String novaOrigem, String novoDestino)</Member>
+        <Member type="Method">public String informacoesDoVoo()</Member>
+        <Member type="Method">public void reservar(Bilhete bilhete)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Bilhete</Name>
+        <Access>Public</Access>
+        <Location left="1664" top="556" />
+        <Size width="326" height="268" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected List&lt;Voo&gt; reserva</Member>
+        <Member type="Field">private String tipo</Member>
+        <Member type="Field">private LocalDate data = LocalDate.now()</Member>
+        <Member type="Method">public void AddVoo(Voo voo)</Member>
+        <Member type="Method">public void RemoverVoo(Voo voo)</Member>
+        <Member type="Method">public String ImprimirBilhete()</Member>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Cliente</Name>
+        <Access>Public</Access>
+        <Location left="872" top="553" />
+        <Size width="302" height="400" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private String nome</Member>
+        <Member type="Field">String cpf</Member>
+        <Member type="Field">private Acelerador acelerador = new AceleradorPadrao()</Member>
+        <Member type="Field">private List&lt;Bilhete&gt; bilhetes = new ArrayList&lt;Bilhete&gt;()</Member>
+        <Member type="Field">private List&lt;Ponto&gt; pontosNaoUsados = new ArrayList&lt;Ponto&gt;()</Member>
+        <Member type="Field">private List&lt;Ponto&gt; pontosUsados = new ArrayList&lt;Ponto&gt;()</Member>
+        <Member type="Field">private List&lt;Ponto&gt; pontosExpirados = new ArrayList&lt;Ponto&gt;()</Member>
+        <Member type="Field">private int bilhetesGratis = 0</Member>
+        <Member type="Field">private int bilhetesGratisGerados = 0</Member>
+        <Member type="Field">private int periodo</Member>
+        <Member type="Method">public boolean comprarBilhete(Bilhete bilhete)</Member>
+        <Member type="Method">public double verificarPontos()</Member>
+        <Member type="Method">public String toString()</Member>
+        <Member type="Method">public void bilhetesUltimos12Meses()</Member>
+        <Member type="Method">public void mudarAcelerador(Acelerador novoAcelerador)</Member>
+        <Member type="Method">public double totalPontos12Meses()</Member>
+        <Member type="Method">public double totalGasto()</Member>
+        <Member type="Method">public double totalGasto(LocalDate data)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BilheteFidelidade</Name>
+        <Access>Public</Access>
+        <Location left="1977" top="968" />
+        <Size width="249" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BilhetePromocional</Name>
+        <Access>Public</Access>
+        <Location left="1519" top="968" />
+        <Size width="249" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double PORCENTAGEM_PONTOS = 0.5</Member>
+        <Member type="Field">private double PORCENTAGEM_VALOR = 0.6</Member>
+        <Member type="Method">public double CalcularValor()</Member>
+        <Member type="Method">public int GerarPontos()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>aceleradorPreto</Name>
+        <Access>Public</Access>
+        <Location left="904" top="1456" />
+        <Size width="221" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double MULTIPLICADOR = 1.5</Member>
+        <Member type="Field">double CUSTO_MENSAL = 0</Member>
+        <Member type="Method">public double multiplicar(Bilhete bilhete)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>aceleradorPrata</Name>
+        <Access>Public</Access>
+        <Location left="1179" top="1456" />
+        <Size width="227" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double MULTIPLICADOR = 1.25</Member>
+        <Member type="Field">double CUSTO_MENSAL = 0</Member>
+        <Member type="Method">public double multiplicar(Bilhete bilhete)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Acelerador</Name>
+        <Access>Public</Access>
+        <Location left="904" top="1125" />
+        <Size width="220" height="232" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public double multiplicar(Bilhete valor)</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>aceleradorPadrao</Name>
+        <Access>Public</Access>
+        <Location left="636" top="1456" />
+        <Size width="212" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public double multiplicar(Bilhete bilhete)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Empresa</Name>
+        <Access>Public</Access>
+        <Location left="317" top="553" />
+        <Size width="450" height="268" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private HashMap&lt;String, Cliente&gt; clientes = new HashMap&lt;String, Cliente&gt;()</Member>
+        <Member type="Field">private List&lt;Voo&gt; todosOsVoo = new ArrayList&lt;Voo&gt;()</Member>
+        <Member type="Field">private List&lt;Trecho&gt; todosOsTrechos = new ArrayList&lt;Trecho&gt;()</Member>
+        <Member type="Method">public boolean cadastroCliente(String nome, String cpf)</Member>
+        <Member type="Method">public Cliente procurarCliente(String cpf)</Member>
+        <Member type="Method">public Cliente maiorPontos12Meses()</Member>
+        <Member type="Method">public void addVoo(Voo voo)</Member>
+        <Member type="Method">public double totalArrecadado()</Member>
+        <Member type="Method">public void salvarEmpresa()</Member>
+        <Member type="Method">public void addTrecho(Trecho novoTrecho)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Ponto</Name>
+        <Access>Public</Access>
+        <Location left="890" top="163" />
+        <Size width="242" height="208" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double valor</Member>
+        <Member type="Field">private LocalDate data</Member>
+        <Member type="Method">public boolean verificarValidade()</Member>
+        <Member type="Method">public double reduzirValor(double valor)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="3" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="3">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="9" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="11" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

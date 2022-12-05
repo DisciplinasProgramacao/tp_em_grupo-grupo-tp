@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe Trecho
  */
-public class Trecho {
+public class Trecho implements Serializable {
 
     // #region atributos
     private int numero;
@@ -34,5 +36,11 @@ public class Trecho {
         StringBuilder descricao = new StringBuilder("-----\n");
         descricao.append(this.numero + "-" + this.origem + " para " + this.destino);
         return descricao.toString();
+    }
+    public String getDestino() {
+    	return this.destino;
+    }
+    public String getOrigem() {
+    	return this.origem;
     }
 }

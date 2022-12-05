@@ -1,4 +1,4 @@
 
 public interface Acelerador {
-    public double multiplicar(Bilhete valor);
-    }
+public double multiplicar(Bilhete valor);
+}

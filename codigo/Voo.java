@@ -1,9 +1,18 @@
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Voo {
-    // #region atributos
+public class Voo implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7554396851148570657L;
+	// #region atributos
     private double valorBase;
-    private Data data;
+    private LocalDate data=LocalDate.now();
     private Trecho trecho;
+    private List<Bilhete> reservasFeitas=new ArrayList<Bilhete>();
 
     // #endregion
 
@@ -14,7 +23,7 @@ public class Voo {
      * @param trecho    Trecho percorrido pelo voo
      * @param valorBase Valor base do voo
      */
-    public Voo(Data data, Trecho trecho, double valorBase) {
+    public Voo(LocalDate data, Trecho trecho, double valorBase) {
 
         this.data = data;
         this.trecho = trecho;
@@ -39,10 +48,14 @@ public class Voo {
      * 
      * @return String no formato indicado.
      */
+    public void reservar(Bilhete bilhete) {
+    	this.reservasFeitas.add(bilhete);
+    }
     public String informacoesDoVoo() {
         StringBuilder informacoes = new StringBuilder("-----\n");
+        Data novaData=new Data(this.data.getDayOfMonth(),this.data.getMonthValue(),this.data.getYear());
         informacoes.append(
-                this.trecho.informacoesDoTrecho() + " em " + data.dataFormatada() + "\n Valor base-" + valorBase);
+                this.trecho.informacoesDoTrecho() + " em " + novaData.dataFormatada() + "\n Valor base-" + valorBase);
         return informacoes.toString();
     }
 
@@ -52,5 +65,14 @@ public class Voo {
 
     public void setValorBase(double valorBase) {
         this.valorBase = valorBase;
+    }
+    public Trecho getTrecho() {
+    	return this.trecho;
+    }
+    public LocalDate getData() {
+    	return this.data;
+    }
+    public List<Bilhete> getReservasFeitas(){
+    	return this.reservasFeitas;
     }
 }

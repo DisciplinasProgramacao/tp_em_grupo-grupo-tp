@@ -1,6 +1,10 @@
 import java.util.Comparator;
 
 public class BilhetePromocional extends Bilhete {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1353127984546912981L;
 	private final double PORCENTAGEM_PONTOS = 0.5;
 	private final double PORCENTAGEM_VALOR = 0.6;
 

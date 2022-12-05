@@ -1,23 +1,22 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class Bilhete {
+public class Bilhete implements Serializable {
     protected List<Voo> reserva;
     private String tipo; // Tipo verificar se precisa
-    private Data data;
-
+    private LocalDate data=LocalDate.now();
     /**
      * Método construtor
      */
     public Bilhete(Voo v) {
         // this.tipo = tipo;
         this.reserva = new ArrayList<Voo>();
-        LocalDate today = LocalDate.now();
-        this.data = new Data(today.getDayOfMonth(), today.getMonthValue());
-
+        this.AddVoo(v);
+        v.reservar(this);
     }
 
     /**
@@ -80,7 +79,20 @@ public class Bilhete {
         return this.tipo;
     }
 
-    public void setTIPO(String tipo) {
+
+
+	public void setTIPO(String tipo) {
         this.tipo = tipo;
     }
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+	public List<Voo> getReserva(){
+		return this.reserva;
+	}
 }
