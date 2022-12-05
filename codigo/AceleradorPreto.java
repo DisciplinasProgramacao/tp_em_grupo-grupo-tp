@@ -2,8 +2,8 @@
 public class AceleradorPreto implements Acelerador {
 
 	@Override
-	public double multiplicar(double valor) {
-		return valor*1.25;
+	public double multiplicar(Bilhete bilhete) {
+		return bilhete.GerarPontos()*1.25;
 	}
 
 }

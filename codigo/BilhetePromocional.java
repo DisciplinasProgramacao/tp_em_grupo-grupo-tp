@@ -25,6 +25,6 @@ public class BilhetePromocional extends Bilhete {
 	}
 
 	public int GerarPontos() {
-		return (int) (Math.floorDiv((int) (CalcularValor()*this.PORCENTAGEM_PONTOS), 500)*500);
+		return (int) (Math.floorDiv((int) (CalcularValor()), 500)*500*this.PORCENTAGEM_PONTOS);
 	}
 }

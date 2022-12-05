@@ -13,7 +13,7 @@ public class App {
     };
 
     public static int menu() {
-        //limparTela();
+        // limparTela();
         System.out.println("Alunos: João / Gabriel / Gabriel / Vitor");
 
         System.out.println("======================================");
@@ -34,55 +34,47 @@ public class App {
     }
 
     public static void main(String[] args) {
-
+        Empresa empresa = new Empresa();
         int opcao;
         do {
             opcao = menu();
             switch (opcao) {
                 case 1:
-
+                    empresa.cadastroCliente("Joao", "123", 0, 0);
                     break;
                 case 2:
 
-                    // Empresa.procurarCliente(cpf);
+                    System.out.println(empresa.procurarCliente("123"));
                     break;
                 case 3:
 
                     break;
                 case 4:
                     Data dat = new Data(11, 11, 1992);
-                    //System.out.println("Criar trecho: ");
                     Trecho tre = new Trecho(1, "Belo Horizonte", "São Paulo");
 
-                    // Classe Voo
-                    //System.out.println("Criar voo: ");
                     Voo v = new Voo(dat, tre, 2000);
                     Voo v2 = new Voo(dat, tre, 2000);
                     Voo v3 = new Voo(dat, tre, 2000);
-                    //System.out.println(v.informacoesDoVoo());
 
                     v.AlterarTrecho(1, "São Paulo", "Belo Horizonte");
-                    //System.out.println(tre.informacoesDoTrecho());
-
-                    //System.out.println("Cadastrar cliente: ");
-                    Empresa.cadastroCliente("Joao", "123", 0, 0);
-                    //Empresa.procurarCliente("123");
-                    //System.out.println("Comprar Bilhete: ");
-                    Cliente cli = new Cliente("Joao", "123", 0, 0);
 
                     Bilhete teste = new BilhetePromocional(v);
-                    
-                    System.out.println(cli.comprarBilhete(v));
-                    System.out.println(cli.verificarPontos());
 
                     teste.AddVoo(v);
                     teste.AddVoo(v2);
                     teste.AddVoo(v3);
-                    //System.out.println(teste.CalcularValor());
-                    //System.out.println(teste.GerarPontos());
-                    
-                    //System.out.println(teste.CalcularValor()); //110 retorno normal / 0 Fidelidade / 66 Promocional
-                    
+                    Acelerador prata = new AceleradorPrata();
+                    empresa.procurarCliente("123").mudarAcelerador(prata);
+                    empresa.procurarCliente("123").comprarBilhete(teste);
+
+                    System.out.println(empresa.procurarCliente("123").verificarPontos());
+                    System.out.println(teste.CalcularValor());
+                    System.out.println(empresa.procurarCliente("123"));
+                    // System.out.println(teste.GerarPontos());
+
+                    // System.out.println(teste.CalcularValor()); //110 retorno normal / 0
+                    // Fidelidade / 66 Promocional
 
                     break;
 

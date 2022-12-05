@@ -1,10 +1,13 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class Bilhete {
     protected List<Voo> reserva;
     private String tipo; // Tipo verificar se precisa
+    private Data data;
 
     /**
      * Método construtor
@@ -12,6 +15,9 @@ public class Bilhete {
     public Bilhete(Voo v) {
         // this.tipo = tipo;
         this.reserva = new ArrayList<Voo>();
+        LocalDate today = LocalDate.now();
+        this.data = new Data(today.getDayOfMonth(), today.getMonthValue());
+
     }
 
     /**
@@ -34,7 +40,6 @@ public class Bilhete {
      */
     public String ImprimirBilhete() {
         StringBuilder reservaDescricao = new StringBuilder();
-        reservaDescricao.append("aa");
         for (Voo v : this.reserva) {
             // reservaDescricao.append(" " + v.informacoesDoVoo());
             reservaDescricao.append(" " + v.informacoesDoVoo() + "aa");
