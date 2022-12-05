@@ -5,17 +5,27 @@ public class Empresa{
     static HashMap<String, Cliente> clientes = new HashMap<String, Cliente>();
 
     
-    public static void cadastroCliente(){
+    /**
+     * Cadastrar novo cliente
+     * @param cpf CPF do novo cliente
+     */
+    public static boolean cadastroCliente(String nome, String cpf, int totalPontos, int periodo){
 
-        Cliente novoCliente = new Cliente();
+        Cliente novoCliente = new Cliente(nome, cpf, totalPontos, periodo);
         //Adicionar dados Cliente
 
+        //verificar se já existe cliente pelo cpf
+        clientes.get(cpf);
+
         //Chave e novo cliente
-        clientes.put("123.123.123.12", novoCliente);
+        clientes.put(cpf, novoCliente);
+        
+        return true;
     }
 
-    public static Cliente procurarCliente(String cpf){
-        return clientes.get(cpf);
+    public static void procurarCliente(String cpf){
+        
+        System.out.println(clientes.get(cpf));
     }
 
 
