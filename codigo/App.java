@@ -1,12 +1,14 @@
 import java.time.LocalDate;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
 import java.util.List;
+import java.util.Random;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class App {
     static Scanner teclado = new Scanner(System.in);
@@ -40,11 +42,10 @@ public class App {
      * @throws IOException Arquivo não encontrado
      */
     private static String[] carregarCidades(String Arquivo) throws IOException {
-    	Empresa emp=new Empresa();
         Scanner arquivo = new Scanner(new File(Arquivo));
         int i = 0;
 
-        String[] cidades = new String[10];
+        String[] cidades = new String[5];
         while (arquivo.hasNextLine()) {
             String nome = arquivo.nextLine();
             cidades[i] = nome;
@@ -74,6 +75,8 @@ public class App {
         System.out.println("3 - Cadastrar Cliente");
         System.out.println("4 - Menu do cliente");
         System.out.println("5 - Menu da empresa");
+        System.out.println("6 - Salvar");
+        System.out.println("7 - adicionar informações para teste");
 
         System.out.println("0 - Sair");
         System.out.print("Digite sua opção: ");
@@ -189,10 +192,9 @@ public class App {
         System.out.println();
         System.out.println();
 
-        System.out.println("selecione o trecho");
+        System.out.println("selecione os trechos");
         System.out.println("==========================");
         for (Trecho trecho : trechos) {
-            int i = 1;
             System.out.println(trecho.informacoesDoTrecho());
         }
 
@@ -278,6 +280,64 @@ public class App {
             return -1;
         }
     }
+    public static void teste(Empresa emp,String[] cidades ) throws FileNotFoundException {
+    	Random random=new Random();
+    	for(int count=0; count < cidades.length * cidades.length ; count++) {
+    		int random1=random.ints(0, (cidades.length-1))
+    				.findFirst() 
+    				.getAsInt();
+        	int random2=random.ints(0, (cidades.length-1))
+        			.findFirst() 
+        			.getAsInt();
+        	if(cidades[random1]!=cidades[random2]) {
+    		Trecho novoTrecho=new Trecho(emp.getTodosOsTrechos().size(),cidades[random1],cidades[random2]);
+    		emp.addTrecho(novoTrecho);
+        	}
+    		
+    	}
+    	for(int count=0; count<10;count++) {
+    		int random1=random.ints(0,(emp.getTodosOsTrechos().size())-1)
+    				.findFirst()
+    				.getAsInt();
+    		int random2=random.ints(0, 5000)
+    				.findFirst()
+    				.getAsInt();
+    		Voo novoVoo=new Voo(LocalDate.now(),emp.getTodosOsTrechos().get(random1),random2);
+    		emp.addVoo(novoVoo);
+    	}
+
+			Scanner arquivo = new Scanner(new File("names.txt"));
+
+    	String[] nomesAleatorios=new String[22000];
+    	int count=0;
+    	while(arquivo.hasNext()) {
+    		nomesAleatorios[count]=arquivo.nextLine();
+    		count++;
+    	}
+    	for(int count1=0 ;count1<=500;count1++) {
+    		int random1=random.ints(0, (nomesAleatorios.length-1))
+    				.findFirst()
+    				.getAsInt();
+    		int random2=random.ints(0, 300)
+    				.findFirst()
+    				.getAsInt();
+    		emp.cadastroCliente(nomesAleatorios[random1], String.valueOf(count1));
+    		for(int count2=0;count2<random2;count2++) {
+    			int random3=random.ints(0,emp.getTodosVoo().size()-1)
+        				.findFirst()
+        				.getAsInt();
+    			int random4=random.ints(0,1)
+        				.findFirst()
+        				.getAsInt();
+    			Bilhete novoBilhete =random4==1 ? new Bilhete() : new BilhetePromocional();
+    			
+    			novoBilhete.AddVoo(emp.getTodosVoo().get(random3));
+    			emp.procurarCliente(String.valueOf(count1)).comprarBilhete(novoBilhete);
+    		}
+    	}
+    		
+
+    }
     // #endregion
 
     public static void main(String[] args) throws Exception {
@@ -285,22 +345,26 @@ public class App {
         Scanner teclado = new Scanner(System.in);
 
         String[] cidades = new String[5];
-        try {
             cidades = carregarCidades(nomeArq);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
+        
         LocalDate data = LocalDate.of(1, 1, 1);
         int opcao, num = 0, dia, mes, ano;
         String origem = null, destino = null, nome = null, cpf = null;
         double valor = 500;
         Trecho novoTrecho = null;
         Voo novoVoo = null;
-        Cliente cliente = null;
-        List<Cliente> clientes;
 
-        Empresa emp = new Empresa();
+	    	Empresa emp=new Empresa();
+   		  try {
+   	   		 File f= new File("1.txt");	
+   	   		 ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
+   	   		 emp=(Empresa) in.readObject();
+
+   		  }
+   	     catch(FileNotFoundException ex) {
+
+   		System.out.println("nao encontrou arquivo");
+   	}
 
         do {
             limparTela();
@@ -309,9 +373,8 @@ public class App {
                 case 1: // criar techo
                     num++;
                     while (destino == origem) {
-                        limparTela();
-                        opcao = menuOrigem();
-
+                            opcao = menuOrigem();
+                        	limparTela();
                         switch (opcao) {
                             case 1:
                                 origem = cidades[0];
@@ -331,8 +394,8 @@ public class App {
 
                         }
 
-                        limparTela();
                         opcao = menuDestino();
+                        limparTela();
 
                         switch (opcao) {
                             case 1:
@@ -356,16 +419,16 @@ public class App {
                             System.out.println("erro-origem e desttino iguais");
                             System.out.println("selecione novamente");
                         }
-
-                    }
-                    novoTrecho = new Trecho(num, origem, destino);
+                    }         
+                        
+                    novoTrecho = new Trecho(emp.getTodosOsTrechos().size(), origem, destino);
                     emp.addTrecho(novoTrecho);
                     System.out.println();
                     System.out.println("trecho criado.");
                     destino = null;
                     origem = null;
                     break;
-
+                    
                 case 2: // criar voo
                     limparTela();
                     if (emp.getTodosOsTrechos().isEmpty()) {
@@ -413,6 +476,7 @@ public class App {
                     System.out.println(novoVoo.informacoesDoVoo());
 
                     data = LocalDate.of(1, 1, 1);
+                    
                     break;
 
                 case 3:
@@ -469,10 +533,16 @@ public class App {
                                         System.out.println("Bilhete promocional adquirido com sucesso!");
                                         break;
                                     case 3:
+                                    	if(clienteEncon.getBilhetesGratis()>0) {
                                         Bilhete novoFidelidade = new BilheteFidelidade(novoVoo);
                                         clienteEncon.comprarBilhete(novoFidelidade);
-
                                         System.out.println("Bilhete fidelidade adquirido com sucesso!");
+                                    	}
+                                    	else {
+                                    	System.out.println("Cliente sem bilhetes gratis disponivel");
+                                    	}
+
+                                        
                                         break;
                                 }
                                 break;
@@ -526,12 +596,9 @@ public class App {
                              LocalDate dataDigitada=LocalDate.of(ano, mes, dia);
                              
                              System.out.println("Informe a cidade:");
-                             String cidade = teclado.next();
-                             teclado.nextLine();
+                             String cidade = teclado.nextLine();
                             // 1oo reservas
-                             for(Voo voo : emp.cidadesDataMaior100(dataDigitada, cidade)) {
-                            	 System.out.println(voo.getData());
-                             }
+                             emp.cidadesDataMaior100(dataDigitada, cidade);
                             break;
                         case 3:
                             // total arrecadado
@@ -545,9 +612,16 @@ public class App {
 
                     }
                     break;
-                    
+                case 6:
+                	emp.salvarEmpresa();
+                	break;
+                case 7:
+                	System.out.println(cidades[1]);
+                	teste(emp,cidades);
+                    System.out.println("teste adicionado com sucesso!");
 
             }
+                    
             pausa();
         } while (opcao != 0);
 

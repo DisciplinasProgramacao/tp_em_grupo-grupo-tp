@@ -5,7 +5,11 @@ import java.io.Serializable;
  */
 public class Trecho implements Serializable {
 
-    // #region atributos
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// #region atributos
     private int numero;
     private String origem;
     private String destino;

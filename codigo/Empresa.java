@@ -31,9 +31,9 @@ public class Empresa implements Serializable{
         //Adicionar dados Cliente
 
         //verificar se já existe cliente pelo cpf
-        clientes.get(cpf);
-
         //Chave e novo cliente
+        if(clientes.containsKey(cpf))
+        	return false;
         clientes.put(cpf, novoCliente);
         
         return true;
@@ -53,12 +53,12 @@ public class Empresa implements Serializable{
     public void addVoo(Voo voo) {
     	this.todosOsVoo.add(voo);
     }
-    public List<Voo> cidadesDataMaior100(LocalDate data,String destino){
-    	return this.todosOsVoo.stream()
-    			.filter(voo->voo.getTrecho().getDestino()==destino)
-    			.filter(voo->voo.getData()==data)
+    public void cidadesDataMaior100(LocalDate data,String destino){
+    	this.todosOsVoo.stream()
+    			.filter(voo->voo.getTrecho().getDestino().equals(destino))
+    			.filter(voo->voo.getData().equals(data))
     			.filter(voo->voo.getReservasFeitas().size()>=100)
-    			.toList();
+    			.forEach(voo->System.out.println(voo.informacoesDoVoo()));
     }
     public double totalArrecadado() {
     	return this.clientes.entrySet()
@@ -70,8 +70,9 @@ public class Empresa implements Serializable{
     			
     }
     public void salvarEmpresa() {
+    	
     	try {
-			FileOutputStream f = new FileOutputStream(new File("empresa.txt"));
+			FileOutputStream f = new FileOutputStream(new File("1.txt"));
 			ObjectOutputStream o = new ObjectOutputStream(f);
 
 			o.writeObject(this);
@@ -79,12 +80,6 @@ public class Empresa implements Serializable{
 			o.close();
 			f.close();
 
-			FileInputStream fi = new FileInputStream(new File("empresa.txt"));
-
-			fi.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("arquivo nao encontrado");
 		} catch (IOException e) {
 			System.out.println("Error initializing stream");
 		}

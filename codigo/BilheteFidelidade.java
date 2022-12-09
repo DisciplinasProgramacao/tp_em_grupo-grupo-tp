@@ -8,6 +8,8 @@ public class BilheteFidelidade extends Bilhete {
 	public BilheteFidelidade(Voo v) {
 		super(v);
 	}
+	public BilheteFidelidade() {
+	}
 	@Override
 	public int GerarPontos(){
         return 0;

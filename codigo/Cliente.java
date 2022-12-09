@@ -17,7 +17,7 @@ public class Cliente implements Comparable<Cliente>,Serializable {
     private List<Ponto> pontosExpirados=new ArrayList<Ponto>();
     private int bilhetesGratis=0;
     private int bilhetesGratisGerados=0;
-    private int periodo; // Verificar se não tem que ser double ou data
+    private int periodo;
 
     /**
      * Metodo construtor Cliente.
@@ -30,7 +30,7 @@ public class Cliente implements Comparable<Cliente>,Serializable {
     public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        this.periodo = 0; // Verificar oque é esse perido.
+        this.periodo = 0;
     }
 
     public boolean comprarBilhete(Bilhete bilhete) {
@@ -46,18 +46,16 @@ public class Cliente implements Comparable<Cliente>,Serializable {
             if(this.verificarPontos()>10500) {
             	while(this.verificarPontos()>10500) {
             	double total=10500;
-            	int count=0;
             	while(total>0) {
-            		if(total<this.pontosNaoUsados.get(count).getValor()) {
-            			this.pontosNaoUsados.get(count).reduzirValor(total);
+            		if(total<this.pontosNaoUsados.get(0).getValor()) {
+            			this.pontosNaoUsados.get(0).reduzirValor(total);
             			
             		}
             		else {
-            			this.pontosUsados.add(this.pontosNaoUsados.get(count));
-            			this.pontosNaoUsados.remove(this.pontosNaoUsados.get(count));
-            			count++;
+            			this.pontosUsados.add(this.pontosNaoUsados.get(0));
+            			this.pontosNaoUsados.remove(this.pontosNaoUsados.get(0));
             		}
-            		total=total-this.pontosNaoUsados.get(count).getValor();
+            		total=this.pontosNaoUsados.size()==0 ? 0 : total-this.pontosNaoUsados.get(0).getValor();
             	}
             	this.bilhetesGratis++;
 				this.bilhetesGratisGerados++;

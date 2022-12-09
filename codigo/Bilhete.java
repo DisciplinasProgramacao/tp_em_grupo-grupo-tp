@@ -6,7 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 public class Bilhete implements Serializable {
-    protected List<Voo> reserva;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected List<Voo> reserva;
     private String tipo; // Tipo verificar se precisa
     private LocalDate data=LocalDate.now();
     /**
@@ -18,12 +22,17 @@ public class Bilhete implements Serializable {
         this.AddVoo(v);
         v.reservar(this);
     }
+    public Bilhete() {
+        // this.tipo = tipo;
+        this.reserva = new ArrayList<Voo>();
+    }
 
     /**
      * Metodo para adicionar voo para uma Array list;
      */
     public void AddVoo(Voo voo) {
         this.reserva.add(voo);
+        voo.reservar(this);
     }
 
     /**

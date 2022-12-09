@@ -11,7 +11,8 @@ public class BilhetePromocional extends Bilhete {
 	public BilhetePromocional(Voo v) {
 		super(v);
 	}
-
+	public BilhetePromocional() {
+	}
 	public double CalcularValor() {
 		Comparator<Voo> porPreco = Comparator
 				.comparing(Voo::getValorBase);
